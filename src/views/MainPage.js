@@ -3,187 +3,171 @@ import { withStyles } from '@material-ui/core/styles';
 import LensIcon from '@material-ui/icons/Lens';
 import { Row,Col } from 'reactstrap';
 import {
-    AppBar, Typography, Container, InputBase,
+    Typography, Container, InputBase,
     Paper, IconButton, Grid, Button, Card, ImageList
 } from '@material-ui/core';
-
-import "../styles.css";
-const styles = (theme) => ({
-    root: {
-        margin: 0,
-        padding: theme.spacing(2),
-    },
-    closeButton: {
-        position: 'absolute',
-        right: theme.spacing(1),
-        top: theme.spacing(1),
-        color: theme.palette.grey[500],
-    },
-    contentDialog: {
-        position: 'absolute',
-        height: 200
-    },
-});
+import Slides from './Slides';
+import AddsPaper from './AddsPaper';
+import Type from './Types';
+import Owner from './Owner';
+import Movie from './Movie';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import './App.css';
+import CloseIcon from '@material-ui/icons/Close';
 
 export default function MainPage(props) {
-    const [open, setOpen] = useState(true);
-
-    function Years(year) {
+    const Years =(year)=> {
         return year.map(item => {
-            return <Paper square  style={{
+            return <Paper square style={{
                 backgroundColor: '#C5C8CF',
-                marginLeft: '10%',
+                marginLeft: '20%',
                 marginTop: '2%',
-                width: '160%',
-                height: '5%'
+                width: '80%',
+                height: '3%'
             }}> <Row><Col>
-                        <a style={{ marginLeft: '15%' }}>{item}</a>
-                        <a style={{ marginLeft: '15%'}}>{item}</a>
+                    <a style={{ marginLeft: '15%' }} className="h2">{item}</a>
+                    <a style={{ marginLeft: '15%' }} className="h2">{item}</a>
                     </Col></Row>
             </Paper>                
         }) 
     }
 
-    function Groups(groups) {
+    const  Groups = (groups) =>{
         return groups.map(item => {
             return <Paper square style={{
                 backgroundColor: '#C5C8CF',
-                marginLeft: '10%',
-                width: '160%',
+                marginLeft: '20%',
+                width: '80%',
                 marginTop: '2%',
                 height: '5%'
             }}> <Row><Col>
                         <LensIcon style={{ fontSize: '80%', marginLeft: '10%' }} />
-                        <a style={{ marginLeft: '10%' }}>{item}</a>
+                    <a style={{ marginLeft: '10%' }} className="h2">{item}</a>
                     </Col></Row>
             </Paper>
         })
     }
 
-    function Types(types) {
+    const Types = (types) =>{
         return types.map(item => {
             return <Paper square style={{
                 backgroundColor: '#C5C8CF',
-                marginLeft: '10%',
-                width: '160%',
+                marginLeft: '20%',
+                width: '80%',
                 marginTop: '2%',
                 height: '5%'
             }}> <Row>
                     <Col>
                         <LensIcon style={{ fontSize: '80%', marginLeft:'10%' }} />
-                        <a style={{ marginLeft: '5%' }}>{item}</a>
+                        <a style={{ marginLeft: '5%' }} className="h2">{item}</a>
                     </Col>
                 </Row>
             </Paper>
         })
     }
-    return (
-        <div>
-            <Grid container xs={12}>
-                <Grid item xs={1}>
-                </Grid>
-                <Grid item xs={8}>
-                    <Paper style={{
-                        backgroundColor: '#C5C8CF',
-                        marginLeft: '10%',
-                        marginTop: '20%',
-                        width: '100%',
-                        height: '100%'
-                    }}></Paper>
-                </Grid>
-                <Grid item xs={1}>
-                </Grid>
+
+    const Menus = (menus) => {
+        return menus.map(item => {
+            return <>
+               <a style={{ marginLeft: '10%' }} className="h2">{item}</a>
+                <MoreVertIcon style={{ fontSize: '50%', marginLeft: '1%' }} />
+                </>
+        })
+    }
+
+ return (
+     <div>
+         <Grid container xs={12}>
+             <Grid item xs={2}>
+                 <AddsPaper color='#D2D4D5' className="addsLeft" />
+             </Grid>
+             <Grid item xs={8} >
+                 <Slides/> 
+             </Grid>
+             <Grid item xs={2}>
+                 <AddsPaper className="addsRight" />
+               </Grid>
             </Grid>
             <Grid container xs={12}>
                 <Grid item xs={1}>
                 </Grid>
-                <Grid item xs={8} style={{ marginTop: '20%'}}>
-                    <Paper style={{
-                        backgroundColor: '#C5C8CF',
-                        marginLeft: '10%',
-                        marginTop: '1%',
-                        width: '100%',
-                        height: '1000%'
-                    }}></Paper>
+               <Grid item xs={8}>
+                 <AddsPaper className="addsCenter"/>
                 </Grid>
                 <Grid item xs={1}>
                 </Grid>
             </Grid>
-            <div><Typography align="center" >Group</Typography></div>
-            <Grid container xs={12}>
-                <Grid item xs={1}>
-                    <Paper style={{
-                        backgroundColor: '#C5C8CF',
-                        marginLeft: '10%',
-                        marginTop: '1%',
-                        width: '100%',
-                        height: '500%'
-                    }}></Paper>
+            <Grid container xs={12}  >
+                <Grid item xs={2}> </Grid>
+             <Grid item xs={8}>
+                 <Paper style={{
+                     backgroundColor: '#C5C8CF',
+                     marginTop: '25%',
+                     marginLeft: '5%',
+                     width: '90%',
+                     height: '100%'
+                 }}></Paper>
                 </Grid>
-                <Grid item xs={8}>
-                    <Paper style={{
-                        backgroundColor: '#D788EA',
-                        marginLeft: '10%',
-                        marginTop: '10%',
-                        width: '100%',
-                        height: '500%'
-                    }}></Paper>
+                <Grid item xs={2}></Grid>
+         </Grid>
+         <Grid container xs={12} style={{ marginTop: '10%' }}>
+             <Grid item xs={2} >
+                 <Paper style={{ backgroundColor: '#C5C8CF' }} className="paper_l"></Paper>
+             </Grid>
+             <Grid item xs={8} >
+                     <Type typemov={props.typemov} />
+             </Grid>
+             <Grid item xs={2}>
+                 <Paper style={{ backgroundColor: '#C5C8CF' }} className="paper_l"></Paper>
+             </Grid>
+         </Grid>
+         <Grid container xs={12} style={{ marginTop: '1%' }}>
+             <Grid item xs={2} >
+                 <Paper style={{ backgroundColor: '#C5C8CF' }} className="paper_l"></Paper>
+             </Grid>
+             <Grid item xs={8} >
+                 <Owner owner={props.owner} />
+             </Grid>
+             <Grid item xs={2}>
+                 <Paper style={{ backgroundColor: '#C5C8CF' }} className="paper_l"></Paper>
+             </Grid>
+         </Grid>
+         <Grid container xs={12} style={{ marginTop: '1%' }}>
+             <Grid item xs={2} >  
+             </Grid>
+             <Grid item xs={8} >
+                 <div style={{ marginLeft: '5%', marginTop: '10%' }} >
+                     <Row><Paper style={{ backgroundColor: '#C5C8CF' }}>
+                         <Col>{Menus(props.menus)}</Col></Paper></Row>
+                 </div>
+             </Grid>
+             <Grid item xs={2}>
+             </Grid>
+         </Grid>
+         <Grid container xs={12} style={{ marginTop: '1%' }}>
+             <Grid item xs={2} style={{ marginTop: '5%' }} >
+                 <div style={{ marginLeft: '50%' }}><p className="h1" >Year</p></div>
+                 <div style={{ marginTop: '10%' }}>{Years(props.year)}</div>
+                 <div style={{ marginLeft: '50%' }}><p className="h1" >Group</p></div>
+                 <div style={{ marginTop: '10%' }}>{Groups(props.groups)}</div>
+                 <div style={{ marginLeft: '50%' }}><p className="h1">Type</p></div>
+                 <div style={{ marginTop: '10%' }}>{Types(props.types)}</div>
+               </Grid>
+             <Grid item xs={8} >
+                 <Movie movie={props.movie} /> 
+               </Grid>
+                <Grid item xs={2}>
+                 <Paper style={{
+                     backgroundColor: '#C5C8CF',
+                     marginTop: '20%',
+                     marginLeft: '5%',
+                     width: '90%',
+                     height: '50%'
+                 }}></Paper>
                 </Grid>
-                <Grid item xs={1}>
-                    <img  />
-
-                    <Paper style={{
-                        backgroundColor: '#C5C8CF',
-                        marginLeft: '100%',
-                        marginTop: '10%',
-                        width: '100%',
-                        height: '500%'
-                    }}></Paper>
-                </Grid>
-            </Grid>
-            <div style={{ marginTop: '20%' }}>
-             <Grid container xs={12} >
-                    <Grid item xs={1} style={{ marginTop: '10%' }}>
-                       < Typography align="center" >Year</Typography>
-                            {Years(props.year)}
-                    </Grid>
-                  
-                    <Grid item xs={6} style={{ marginTop: '10%' }}>
-                    <Paper style={{
-                        backgroundColor: '#D788EA',
-                        marginLeft: '20%',
-                        marginTop: '10%',
-                        width: '100%',
-                        height: '500%'
-                    }}></Paper>
-                </Grid>
-                    <Grid item xs={1} style={{ marginTop: '10%' }}>
-                    <img />
-
-                    <Paper style={{
-                        backgroundColor: '#C5C8CF',
-                        marginLeft: '100%',
-                        marginTop: '10%',
-                        width: '100%',
-                        height: '500%'
-                    }}></Paper>
-                </Grid>
-                </Grid>
-
-                <Grid item xs={1} style={{ marginTop: '3%' }}>
-                    < Typography align="center" >Groups</Typography>
-                    {Groups(props.groups)}
-                </Grid>
-
-                <Grid item xs={1} style={{ marginTop: '3%' }}>
-                    < Typography align="center" >Type</Typography>
-                    {Types(props.types)}
-                </Grid>
-             </div>
-        </div>
+         </Grid>
+     </div>
 
 )
-
-    
 }
 

@@ -1,34 +1,29 @@
 import React, {  useState } from 'react'
-import {
-    AppBar, Typography, Container, InputBase,
-    Paper, IconButton, Grid, Button, Card
-} from '@material-ui/core';
-import "../styles.css";
+import { Paper, Dialog } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import './App.css';
+import { ArrowLeft, ArrowRight } from '@material-ui/icons';
 
 
 export default function AddsPaper(props) {
+    const [open, setOpen] = useState(true);
+
+    const onClose = () => {
+        setOpen(false)
+    }
+
     return (
-    <div><Paper style={{
-        backgroundColor: '#6DE518',
-        marginTop: '10%',
-        marginLeft: '2%',
-        width: '15%',
-        height: '70%',
-        position: 'fixed'
-    }}></Paper><Paper style={{
-        backgroundColor: '#EA6329',
-        marginTop: '10%',
-        marginLeft: '82%',
-        width: '15%',
-        height: '70%',
-        position: 'fixed'
-    }}></Paper><Paper style={{
-        backgroundColor: '#29D7EA',
-        marginTop: '30%',
-        marginLeft: '20%',
-        width: '60%',
-        height: '25%',
-        position: 'fixed'
-    }}></Paper></div>
+        <div>
+            {!open ? null : <Paper className={props.className} style={{
+                backgroundColor: '#C5C8CF' }}>
+                <IconButton aria-label="close" color='grey' onClick={onClose} className='IconClose'>
+                    <CloseIcon />
+                </IconButton>
+                <p style={{ marginLeft: '40%' }}>Adds</p>
+            </Paper>
+            }
+
+          </div>
       )
 }
