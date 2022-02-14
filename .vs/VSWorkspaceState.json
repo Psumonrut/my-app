@@ -2,9 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\public",
+    "\\public\\movei",
+    "\\public\\owner",
     "\\src",
+    "\\src\\Image",
     "\\src\\views"
   ],
-  "SelectedNode": "\\public\\favicon.ico",
+  "SelectedNode": "\\src\\views\\DesignFrontEn.js",
   "PreviewInSolutionExplorer": false
 }

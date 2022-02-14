@@ -15,7 +15,7 @@ export default function Type(props) {
 
     return (
         <>
-            <p style={{ marginLeft: '40%', marginTop: '8%' }} className="h1">Group</p>
+            <p style={{ marginLeft: '40%', marginTop: '10%' }} className="h1">Group</p>
             <Grid container style={{ marginLeft: '4%' }} >
                 <Grid container xs={2} style={{ marginLeft: '2%' }} >
                     <div className="card_type">
